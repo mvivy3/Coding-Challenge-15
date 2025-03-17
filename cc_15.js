@@ -81,3 +81,12 @@ document.querySelectorAll(".riskCard").forEach(card => { // add a button to the 
 // Test Case
 addRiskItem("Employee Retention", "Low", "HR");
 // Clicking "Increase Risk Levels" should change it to "Medium".
+
+// TASK 6: Handling Event Propagation
+riskDashboard.addEventListener("click", function(event) { // use stopPropagation() to ensure clicking inside a risk card does not trigger unwanted actions on the dashboard
+    if (event.target.tagName === "BUTTON") {
+        event.stopPropagation();
+    }
+});
+// Test Case
+// Click inside a risk card should not trigger a dashboard-wide event.
