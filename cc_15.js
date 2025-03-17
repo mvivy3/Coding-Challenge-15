@@ -26,3 +26,16 @@ function addRiskItem(riskName, riskLevel, department) { // write a function
   // Test Cases
   addRiskItem("Data Breach", "High", "IT");
   addRiskItem("Supply Chain Disruption", "Medium", "Operations");
+
+// TASK 3: REMOVING RISK ITEMS
+function addResolveButton(riskCard) { // modify addRiskItem to include a "Resolve" button
+    const resolveButton = document.createElement("button");
+    resolveButton.textContent = "Resolve";
+  
+    resolveButton.addEventListener("click", function() { // when the button is clicked, remove the corresponding risk card
+        riskDashboard.removeChild(riskCard);
+    });
+    riskCard.appendChild(resolveButton);
+};
+// Test Case
+addRiskItem("Market Fluctuations", "High", "Finance");
