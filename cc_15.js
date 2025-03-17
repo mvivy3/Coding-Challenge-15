@@ -39,3 +39,28 @@ function addResolveButton(riskCard) { // modify addRiskItem to include a "Resolv
 };
 // Test Case
 addRiskItem("Market Fluctuations", "High", "Finance");
+
+// TASK 4: CATEGORIZING RISKS BY LEVEL
+function applyRiskColor(riskCard, riskLevel) { // modify addRiskItem to apply different background
+    if (riskLevel === "High") { 
+        riskCard.style.backgroundColor = "red"; // high risk = red
+    } else if (riskLevel === "Medium") {
+        riskCard.style.backgroundColor = "yellow"; // medium risk = yellow
+    } else if (riskLevel === "Low") {
+        riskCard.style.backgroundColor = "green"; // low risk = green
+    }
+}
+const firstAddRiskItemWithResolve = addRiskItem; // applies background to original risk cases
+addRiskItem = function(riskName, riskLevel, department) {
+    firstAddRiskItemWithResolve(riskName, riskLevel, department);
+    const lastRiskCard = riskDashboard.lastElementChild;
+    applyRiskColor(lastRiskCard, riskLevel);
+};
+document.querySelectorAll(".riskCard").forEach(card => { // applies background to new risk cases
+    const levelElement = card.querySelector(".level");
+    const riskLevel = levelElement.textContent.replace("Risk Level: ", "");
+    applyRiskColor(card, riskLevel);
+});
+// Test Cases
+addRiskItem("Cybersecurity Threat", "High", "IT");
+addRiskItem("HR Compliance Issue", "Low", "Human Resources");
