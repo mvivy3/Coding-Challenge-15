@@ -64,3 +64,20 @@ document.querySelectorAll(".riskCard").forEach(card => { // applies background t
 // Test Cases
 addRiskItem("Cybersecurity Threat", "High", "IT");
 addRiskItem("HR Compliance Issue", "Low", "Human Resources");
+
+// TASK 5: IMPLEMENTING BULK UPDATES
+document.querySelectorAll(".riskCard").forEach(card => { // add a button to the dashboard labeled "Increase Risk Levels"
+    const levelElement = card.querySelector(".level");
+    let currentLevel = levelElement.textContent.replace("Risk Level: ", "");
+
+    if (currentLevel === "Low") {
+        levelElement.textContent = "Risk Level: Medium"; // changes low to medium
+        applyRiskColor(card, "Medium");
+    } else if (currentLevel === "Medium") { // changes medium to high 
+        levelElement.textContent = "Risk Level: High";
+        applyRiskColor(card, "High"); // high remains unchanged
+    }
+});
+// Test Case
+addRiskItem("Employee Retention", "Low", "HR");
+// Clicking "Increase Risk Levels" should change it to "Medium".
